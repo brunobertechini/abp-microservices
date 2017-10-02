@@ -12,9 +12,10 @@ using System;
 namespace MicroServices.BlogService.Migrations
 {
     [DbContext(typeof(BlogServiceDbContext))]
-    partial class BlogServiceDbContextModelSnapshot : ModelSnapshot
+    [Migration("20171002185918_BlogService_Added_Blog_Post_Entities")]
+    partial class BlogService_Added_Blog_Post_Entities
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

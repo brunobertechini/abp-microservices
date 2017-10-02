@@ -24,7 +24,6 @@ namespace MicroServices.BlogService.Web
             if (startupAssembly.GetName().Name == "ef")
             {
                 string path = Path.GetDirectoryName(typeof(BlogServiceCoreModule).GetAssembly().Location);
-                Console.WriteLine("Core Location: " + path);
                 return path;
             }
 

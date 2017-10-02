@@ -15,31 +15,15 @@ namespace MicroServices.BlogService.EntityFrameworkCore
     {
         public static void Configure(DbContextOptionsBuilder<BlogServiceDbContext> builder, string connectionString)
         {
-            IHostingEnvironment env = IocManager.Instance.Resolve<IHostingEnvironment>();
-            var connString = env.GetAppConfiguration().GetConnectionString(BlogServiceConsts.ConnectionStringName);
+            // Debug for Package Manager Console
+            Console.WriteLine(string.Format("BlogServiceDbContextConfigurer.Configure({0})", connectionString));
 
-            builder.UseSqlServer(connString);
+            builder.UseSqlServer(connectionString);
         }
 
         public static void Configure(DbContextOptionsBuilder<BlogServiceDbContext> builder, DbConnection connection)
         {
             builder.UseSqlServer(connection);
         }
-
-        //public static void Configure(AbpDbContextConfiguration<BlogServiceDbContext> configuration)
-        //{
-        //    IHostingEnvironment env = IocManager.Instance.Resolve<IHostingEnvironment>();
-
-        //    var connString = env.GetAppConfiguration().GetConnectionString(BlogServiceConsts.ConnectionStringName);
-
-        //    if (configuration.ExistingConnection != null)
-        //    {
-        //        configuration.DbContextOptions.UseSqlServer(configuration.ExistingConnection);
-        //    }
-        //    else
-        //    {
-        //        configuration.DbContextOptions.UseSqlServer(connString);
-        //    }
-        //}
     }
 }

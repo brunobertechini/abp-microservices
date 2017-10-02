@@ -1,6 +1,10 @@
 ﻿using Abp.Domain.Repositories;
 using Abp.EntityFrameworkCore;
+using MicroServices.BlogService.Blogs;
+using MicroServices.BlogService.Categories;
+using MicroServices.BlogService.Comments;
 using MicroServices.BlogService.EntityFrameworkCore.Repositories;
+using MicroServices.BlogService.Posts;
 using MicroServices.BlogService.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -21,6 +25,14 @@ namespace MicroServices.BlogService.EntityFrameworkCore
             : base(options)
         {
         }
+
+        public DbSet<Blog> Blogs { get; set; }
+
+        public DbSet<Post> Posts { get; set; }
+
+        public DbSet<Category> Categories { get; set; }
+
+        public DbSet<Comment> Comments { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

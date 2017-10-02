@@ -2,7 +2,10 @@
 using Abp.Modules;
 using Abp.Reflection.Extensions;
 using Abp.Zero.EntityFrameworkCore;
+using MicroServices.BlogService.Configuration;
 using MicroServices.EntityFrameworkCore.Seed;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -32,7 +35,10 @@ namespace MicroServices.BlogService.EntityFrameworkCore
                     }
                     else
                     {
-                        BlogServiceDbContextConfigurer.Configure(options.DbContextOptions, options.ConnectionString);
+                        IHostingEnvironment env = IocManager.Resolve<IHostingEnvironment>();
+                        var connString = env.GetAppConfiguration().GetConnectionString(BlogServiceConsts.ConnectionStringName);
+
+                        BlogServiceDbContextConfigurer.Configure(options.DbContextOptions, connString);
                     }
                 });
             }
