@@ -10,7 +10,13 @@ import * as ApiServiceProxies from './service-proxies';
         ApiServiceProxies.UserServiceProxy,
         ApiServiceProxies.TokenAuthServiceProxy,
         ApiServiceProxies.AccountServiceProxy,
-        ApiServiceProxies.ConfigurationServiceProxy
+        ApiServiceProxies.ConfigurationServiceProxy,
+
+        // BlogService
+        ApiServiceProxies.BlogServiceProxy
+
     ]
 })
-export class ServiceProxyModule { }
+export class ServiceProxyModule {
+
+}

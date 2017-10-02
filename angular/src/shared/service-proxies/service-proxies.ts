@@ -122,6 +122,268 @@ export class AccountServiceProxy {
 }
 
 @Injectable()
+export class BlogServiceProxy {
+    private http: Http = null; 
+    private baseUrl: string = undefined; 
+    protected jsonParseReviver: (key: string, value: any) => any = undefined;
+
+    constructor(@Inject(Http) http: Http, @Optional() @Inject(API_BASE_URL) baseUrl?: string) {
+        this.http = http; 
+        this.baseUrl = baseUrl ? baseUrl : ""; 
+    }
+
+    /**
+     * @return Success
+     */
+    getBlogs(): Observable<ListResultDtoOfBlogDto> {
+        let url_ = this.baseUrl + "/api/services/BlogService/Blog/GetBlogs";
+
+        const content_ = "";
+        
+        return this.http.request(url_, {
+            body: content_,
+            method: "get",
+            headers: new Headers({
+                "Content-Type": "application/json; charset=UTF-8", 
+				"Accept": "application/json; charset=UTF-8"
+            })
+        }).map((response) => {
+            return this.processGetBlogs(response);
+        }).catch((response: any, caught: any) => {
+            if (response instanceof Response) {
+                try {
+                    return Observable.of(this.processGetBlogs(response));
+                } catch (e) {
+                    return <Observable<ListResultDtoOfBlogDto>><any>Observable.throw(e);
+                }
+            } else
+                return <Observable<ListResultDtoOfBlogDto>><any>Observable.throw(response);
+        });
+    }
+
+    protected processGetBlogs(response: Response): ListResultDtoOfBlogDto {
+        const responseText = response.text();
+        const status = response.status; 
+
+        if (status === 200) {
+            let result200: ListResultDtoOfBlogDto = null;
+            let resultData200 = responseText === "" ? null : JSON.parse(responseText, this.jsonParseReviver);
+            result200 = resultData200 ? ListResultDtoOfBlogDto.fromJS(resultData200) : new ListResultDtoOfBlogDto();
+            return result200;
+        } else if (status === 401) {
+            this.throwException("A server error occurred.", status, responseText);
+        } else if (status === 403) {
+            this.throwException("A server error occurred.", status, responseText);
+        } else if (status !== 200 && status !== 204) {
+            this.throwException("An unexpected server error occurred.", status, responseText);
+        }
+        return null;
+    }
+
+    /**
+     * @return Success
+     */
+    getBlog(id: number): Observable<BlogDto> {
+        let url_ = this.baseUrl + "/api/services/BlogService/Blog/GetBlog?";
+        if (id !== undefined)
+        
+            url_ += "Id=" + encodeURIComponent("" + id) + "&";
+
+        const content_ = "";
+        
+        return this.http.request(url_, {
+            body: content_,
+            method: "get",
+            headers: new Headers({
+                "Content-Type": "application/json; charset=UTF-8", 
+				"Accept": "application/json; charset=UTF-8"
+            })
+        }).map((response) => {
+            return this.processGetBlog(response);
+        }).catch((response: any, caught: any) => {
+            if (response instanceof Response) {
+                try {
+                    return Observable.of(this.processGetBlog(response));
+                } catch (e) {
+                    return <Observable<BlogDto>><any>Observable.throw(e);
+                }
+            } else
+                return <Observable<BlogDto>><any>Observable.throw(response);
+        });
+    }
+
+    protected processGetBlog(response: Response): BlogDto {
+        const responseText = response.text();
+        const status = response.status; 
+
+        if (status === 200) {
+            let result200: BlogDto = null;
+            let resultData200 = responseText === "" ? null : JSON.parse(responseText, this.jsonParseReviver);
+            result200 = resultData200 ? BlogDto.fromJS(resultData200) : new BlogDto();
+            return result200;
+        } else if (status === 401) {
+            this.throwException("A server error occurred.", status, responseText);
+        } else if (status === 403) {
+            this.throwException("A server error occurred.", status, responseText);
+        } else if (status !== 200 && status !== 204) {
+            this.throwException("An unexpected server error occurred.", status, responseText);
+        }
+        return null;
+    }
+
+    /**
+     * @return Success
+     */
+    createBlog(input: CreateBlogInput): Observable<BlogDto> {
+        let url_ = this.baseUrl + "/api/services/BlogService/Blog/CreateBlog";
+
+        const content_ = JSON.stringify(input ? input.toJS() : null);
+        
+        return this.http.request(url_, {
+            body: content_,
+            method: "post",
+            headers: new Headers({
+                "Content-Type": "application/json; charset=UTF-8", 
+				"Accept": "application/json; charset=UTF-8"
+            })
+        }).map((response) => {
+            return this.processCreateBlog(response);
+        }).catch((response: any, caught: any) => {
+            if (response instanceof Response) {
+                try {
+                    return Observable.of(this.processCreateBlog(response));
+                } catch (e) {
+                    return <Observable<BlogDto>><any>Observable.throw(e);
+                }
+            } else
+                return <Observable<BlogDto>><any>Observable.throw(response);
+        });
+    }
+
+    protected processCreateBlog(response: Response): BlogDto {
+        const responseText = response.text();
+        const status = response.status; 
+
+        if (status === 200) {
+            let result200: BlogDto = null;
+            let resultData200 = responseText === "" ? null : JSON.parse(responseText, this.jsonParseReviver);
+            result200 = resultData200 ? BlogDto.fromJS(resultData200) : new BlogDto();
+            return result200;
+        } else if (status === 401) {
+            this.throwException("A server error occurred.", status, responseText);
+        } else if (status === 403) {
+            this.throwException("A server error occurred.", status, responseText);
+        } else if (status !== 200 && status !== 204) {
+            this.throwException("An unexpected server error occurred.", status, responseText);
+        }
+        return null;
+    }
+
+    /**
+     * @return Success
+     */
+    updateBlog(input: UpdateBlogInput): Observable<BlogDto> {
+        let url_ = this.baseUrl + "/api/services/BlogService/Blog/UpdateBlog";
+
+        const content_ = JSON.stringify(input ? input.toJS() : null);
+        
+        return this.http.request(url_, {
+            body: content_,
+            method: "put",
+            headers: new Headers({
+                "Content-Type": "application/json; charset=UTF-8", 
+				"Accept": "application/json; charset=UTF-8"
+            })
+        }).map((response) => {
+            return this.processUpdateBlog(response);
+        }).catch((response: any, caught: any) => {
+            if (response instanceof Response) {
+                try {
+                    return Observable.of(this.processUpdateBlog(response));
+                } catch (e) {
+                    return <Observable<BlogDto>><any>Observable.throw(e);
+                }
+            } else
+                return <Observable<BlogDto>><any>Observable.throw(response);
+        });
+    }
+
+    protected processUpdateBlog(response: Response): BlogDto {
+        const responseText = response.text();
+        const status = response.status; 
+
+        if (status === 200) {
+            let result200: BlogDto = null;
+            let resultData200 = responseText === "" ? null : JSON.parse(responseText, this.jsonParseReviver);
+            result200 = resultData200 ? BlogDto.fromJS(resultData200) : new BlogDto();
+            return result200;
+        } else if (status === 401) {
+            this.throwException("A server error occurred.", status, responseText);
+        } else if (status === 403) {
+            this.throwException("A server error occurred.", status, responseText);
+        } else if (status !== 200 && status !== 204) {
+            this.throwException("An unexpected server error occurred.", status, responseText);
+        }
+        return null;
+    }
+
+    /**
+     * @return Success
+     */
+    deleteBlog(id: number): Observable<void> {
+        let url_ = this.baseUrl + "/api/services/BlogService/Blog/DeleteBlog?";
+        if (id !== undefined)
+        
+            url_ += "Id=" + encodeURIComponent("" + id) + "&";
+
+        const content_ = "";
+        
+        return this.http.request(url_, {
+            body: content_,
+            method: "delete",
+            headers: new Headers({
+                "Content-Type": "application/json; charset=UTF-8", 
+				"Accept": "application/json; charset=UTF-8"
+            })
+        }).map((response) => {
+            return this.processDeleteBlog(response);
+        }).catch((response: any, caught: any) => {
+            if (response instanceof Response) {
+                try {
+                    return Observable.of(this.processDeleteBlog(response));
+                } catch (e) {
+                    return <Observable<void>><any>Observable.throw(e);
+                }
+            } else
+                return <Observable<void>><any>Observable.throw(response);
+        });
+    }
+
+    protected processDeleteBlog(response: Response): void {
+        const responseText = response.text();
+        const status = response.status; 
+
+        if (status === 200) {
+            return null;
+        } else if (status === 401) {
+            this.throwException("A server error occurred.", status, responseText);
+        } else if (status === 403) {
+            this.throwException("A server error occurred.", status, responseText);
+        } else if (status !== 200 && status !== 204) {
+            this.throwException("An unexpected server error occurred.", status, responseText);
+        }
+        return null;
+    }
+
+    protected throwException(message: string, status: number, response: string, result?: any): any {
+        if(result !== null && result !== undefined)
+            throw result;
+        else
+            throw new SwaggerException(message, status, response);
+    }
+}
+
+@Injectable()
 export class ConfigurationServiceProxy {
     private http: Http = null; 
     private baseUrl: string = undefined; 
@@ -230,6 +492,10 @@ export class RoleServiceProxy {
             let resultData200 = responseText === "" ? null : JSON.parse(responseText, this.jsonParseReviver);
             result200 = resultData200 ? RoleDto.fromJS(resultData200) : new RoleDto();
             return result200;
+        } else if (status === 401) {
+            this.throwException("A server error occurred.", status, responseText);
+        } else if (status === 403) {
+            this.throwException("A server error occurred.", status, responseText);
         } else if (status !== 200 && status !== 204) {
             this.throwException("An unexpected server error occurred.", status, responseText);
         }
@@ -274,6 +540,10 @@ export class RoleServiceProxy {
             let resultData200 = responseText === "" ? null : JSON.parse(responseText, this.jsonParseReviver);
             result200 = resultData200 ? RoleDto.fromJS(resultData200) : new RoleDto();
             return result200;
+        } else if (status === 401) {
+            this.throwException("A server error occurred.", status, responseText);
+        } else if (status === 403) {
+            this.throwException("A server error occurred.", status, responseText);
         } else if (status !== 200 && status !== 204) {
             this.throwException("An unexpected server error occurred.", status, responseText);
         }
@@ -318,6 +588,10 @@ export class RoleServiceProxy {
 
         if (status === 200) {
             return null;
+        } else if (status === 401) {
+            this.throwException("A server error occurred.", status, responseText);
+        } else if (status === 403) {
+            this.throwException("A server error occurred.", status, responseText);
         } else if (status !== 200 && status !== 204) {
             this.throwException("An unexpected server error occurred.", status, responseText);
         }
@@ -362,6 +636,10 @@ export class RoleServiceProxy {
             let resultData200 = responseText === "" ? null : JSON.parse(responseText, this.jsonParseReviver);
             result200 = resultData200 ? ListResultDtoOfPermissionDto.fromJS(resultData200) : new ListResultDtoOfPermissionDto();
             return result200;
+        } else if (status === 401) {
+            this.throwException("A server error occurred.", status, responseText);
+        } else if (status === 403) {
+            this.throwException("A server error occurred.", status, responseText);
         } else if (status !== 200 && status !== 204) {
             this.throwException("An unexpected server error occurred.", status, responseText);
         }
@@ -409,6 +687,10 @@ export class RoleServiceProxy {
             let resultData200 = responseText === "" ? null : JSON.parse(responseText, this.jsonParseReviver);
             result200 = resultData200 ? RoleDto.fromJS(resultData200) : new RoleDto();
             return result200;
+        } else if (status === 401) {
+            this.throwException("A server error occurred.", status, responseText);
+        } else if (status === 403) {
+            this.throwException("A server error occurred.", status, responseText);
         } else if (status !== 200 && status !== 204) {
             this.throwException("An unexpected server error occurred.", status, responseText);
         }
@@ -460,6 +742,10 @@ export class RoleServiceProxy {
             let resultData200 = responseText === "" ? null : JSON.parse(responseText, this.jsonParseReviver);
             result200 = resultData200 ? PagedResultDtoOfRoleDto.fromJS(resultData200) : new PagedResultDtoOfRoleDto();
             return result200;
+        } else if (status === 401) {
+            this.throwException("A server error occurred.", status, responseText);
+        } else if (status === 403) {
+            this.throwException("A server error occurred.", status, responseText);
         } else if (status !== 200 && status !== 204) {
             this.throwException("An unexpected server error occurred.", status, responseText);
         }
@@ -586,6 +872,10 @@ export class TenantServiceProxy {
             let resultData200 = responseText === "" ? null : JSON.parse(responseText, this.jsonParseReviver);
             result200 = resultData200 ? TenantDto.fromJS(resultData200) : new TenantDto();
             return result200;
+        } else if (status === 401) {
+            this.throwException("A server error occurred.", status, responseText);
+        } else if (status === 403) {
+            this.throwException("A server error occurred.", status, responseText);
         } else if (status !== 200 && status !== 204) {
             this.throwException("An unexpected server error occurred.", status, responseText);
         }
@@ -630,6 +920,10 @@ export class TenantServiceProxy {
 
         if (status === 200) {
             return null;
+        } else if (status === 401) {
+            this.throwException("A server error occurred.", status, responseText);
+        } else if (status === 403) {
+            this.throwException("A server error occurred.", status, responseText);
         } else if (status !== 200 && status !== 204) {
             this.throwException("An unexpected server error occurred.", status, responseText);
         }
@@ -677,6 +971,10 @@ export class TenantServiceProxy {
             let resultData200 = responseText === "" ? null : JSON.parse(responseText, this.jsonParseReviver);
             result200 = resultData200 ? TenantDto.fromJS(resultData200) : new TenantDto();
             return result200;
+        } else if (status === 401) {
+            this.throwException("A server error occurred.", status, responseText);
+        } else if (status === 403) {
+            this.throwException("A server error occurred.", status, responseText);
         } else if (status !== 200 && status !== 204) {
             this.throwException("An unexpected server error occurred.", status, responseText);
         }
@@ -728,6 +1026,10 @@ export class TenantServiceProxy {
             let resultData200 = responseText === "" ? null : JSON.parse(responseText, this.jsonParseReviver);
             result200 = resultData200 ? PagedResultDtoOfTenantDto.fromJS(resultData200) : new PagedResultDtoOfTenantDto();
             return result200;
+        } else if (status === 401) {
+            this.throwException("A server error occurred.", status, responseText);
+        } else if (status === 403) {
+            this.throwException("A server error occurred.", status, responseText);
         } else if (status !== 200 && status !== 204) {
             this.throwException("An unexpected server error occurred.", status, responseText);
         }
@@ -772,6 +1074,10 @@ export class TenantServiceProxy {
             let resultData200 = responseText === "" ? null : JSON.parse(responseText, this.jsonParseReviver);
             result200 = resultData200 ? TenantDto.fromJS(resultData200) : new TenantDto();
             return result200;
+        } else if (status === 401) {
+            this.throwException("A server error occurred.", status, responseText);
+        } else if (status === 403) {
+            this.throwException("A server error occurred.", status, responseText);
         } else if (status !== 200 && status !== 204) {
             this.throwException("An unexpected server error occurred.", status, responseText);
         }
@@ -990,6 +1296,10 @@ export class UserServiceProxy {
             let resultData200 = responseText === "" ? null : JSON.parse(responseText, this.jsonParseReviver);
             result200 = resultData200 ? UserDto.fromJS(resultData200) : new UserDto();
             return result200;
+        } else if (status === 401) {
+            this.throwException("A server error occurred.", status, responseText);
+        } else if (status === 403) {
+            this.throwException("A server error occurred.", status, responseText);
         } else if (status !== 200 && status !== 204) {
             this.throwException("An unexpected server error occurred.", status, responseText);
         }
@@ -1034,6 +1344,10 @@ export class UserServiceProxy {
             let resultData200 = responseText === "" ? null : JSON.parse(responseText, this.jsonParseReviver);
             result200 = resultData200 ? UserDto.fromJS(resultData200) : new UserDto();
             return result200;
+        } else if (status === 401) {
+            this.throwException("A server error occurred.", status, responseText);
+        } else if (status === 403) {
+            this.throwException("A server error occurred.", status, responseText);
         } else if (status !== 200 && status !== 204) {
             this.throwException("An unexpected server error occurred.", status, responseText);
         }
@@ -1078,6 +1392,10 @@ export class UserServiceProxy {
 
         if (status === 200) {
             return null;
+        } else if (status === 401) {
+            this.throwException("A server error occurred.", status, responseText);
+        } else if (status === 403) {
+            this.throwException("A server error occurred.", status, responseText);
         } else if (status !== 200 && status !== 204) {
             this.throwException("An unexpected server error occurred.", status, responseText);
         }
@@ -1122,6 +1440,10 @@ export class UserServiceProxy {
             let resultData200 = responseText === "" ? null : JSON.parse(responseText, this.jsonParseReviver);
             result200 = resultData200 ? ListResultDtoOfRoleDto.fromJS(resultData200) : new ListResultDtoOfRoleDto();
             return result200;
+        } else if (status === 401) {
+            this.throwException("A server error occurred.", status, responseText);
+        } else if (status === 403) {
+            this.throwException("A server error occurred.", status, responseText);
         } else if (status !== 200 && status !== 204) {
             this.throwException("An unexpected server error occurred.", status, responseText);
         }
@@ -1169,6 +1491,10 @@ export class UserServiceProxy {
             let resultData200 = responseText === "" ? null : JSON.parse(responseText, this.jsonParseReviver);
             result200 = resultData200 ? UserDto.fromJS(resultData200) : new UserDto();
             return result200;
+        } else if (status === 401) {
+            this.throwException("A server error occurred.", status, responseText);
+        } else if (status === 403) {
+            this.throwException("A server error occurred.", status, responseText);
         } else if (status !== 200 && status !== 204) {
             this.throwException("An unexpected server error occurred.", status, responseText);
         }
@@ -1220,6 +1546,10 @@ export class UserServiceProxy {
             let resultData200 = responseText === "" ? null : JSON.parse(responseText, this.jsonParseReviver);
             result200 = resultData200 ? PagedResultDtoOfUserDto.fromJS(resultData200) : new PagedResultDtoOfUserDto();
             return result200;
+        } else if (status === 401) {
+            this.throwException("A server error occurred.", status, responseText);
+        } else if (status === 403) {
+            this.throwException("A server error occurred.", status, responseText);
         } else if (status !== 200 && status !== 204) {
             this.throwException("An unexpected server error occurred.", status, responseText);
         }
@@ -1361,6 +1691,162 @@ export class RegisterOutput {
     clone() {
         const json = this.toJSON();
         return new RegisterOutput(JSON.parse(json));
+    }
+}
+
+export class ListResultDtoOfBlogDto { 
+    items: BlogDto[];
+    constructor(data?: any) {
+        if (data !== undefined) {
+            if (data["items"] && data["items"].constructor === Array) {
+                this.items = [];
+                for (let item of data["items"])
+                    this.items.push(BlogDto.fromJS(item));
+            }
+        }
+    }
+
+    static fromJS(data: any): ListResultDtoOfBlogDto {
+        return new ListResultDtoOfBlogDto(data);
+    }
+
+    toJS(data?: any) {
+        data = data === undefined ? {} : data;
+        if (this.items && this.items.constructor === Array) {
+            data["items"] = [];
+            for (let item of this.items)
+                data["items"].push(item.toJS());
+        }
+        return data; 
+    }
+
+    toJSON() {
+        return JSON.stringify(this.toJS());
+    }
+
+    clone() {
+        const json = this.toJSON();
+        return new ListResultDtoOfBlogDto(JSON.parse(json));
+    }
+}
+
+export class BlogDto { 
+    name: string; 
+    description: string; 
+    isDeleted: boolean; 
+    deleterUserId: number; 
+    deletionTime: moment.Moment; 
+    lastModificationTime: moment.Moment; 
+    lastModifierUserId: number; 
+    creationTime: moment.Moment; 
+    creatorUserId: number; 
+    id: number;
+    constructor(data?: any) {
+        if (data !== undefined) {
+            this.name = data["name"] !== undefined ? data["name"] : null;
+            this.description = data["description"] !== undefined ? data["description"] : null;
+            this.isDeleted = data["isDeleted"] !== undefined ? data["isDeleted"] : null;
+            this.deleterUserId = data["deleterUserId"] !== undefined ? data["deleterUserId"] : null;
+            this.deletionTime = data["deletionTime"] ? moment(data["deletionTime"].toString()) : null;
+            this.lastModificationTime = data["lastModificationTime"] ? moment(data["lastModificationTime"].toString()) : null;
+            this.lastModifierUserId = data["lastModifierUserId"] !== undefined ? data["lastModifierUserId"] : null;
+            this.creationTime = data["creationTime"] ? moment(data["creationTime"].toString()) : null;
+            this.creatorUserId = data["creatorUserId"] !== undefined ? data["creatorUserId"] : null;
+            this.id = data["id"] !== undefined ? data["id"] : null;
+        }
+    }
+
+    static fromJS(data: any): BlogDto {
+        return new BlogDto(data);
+    }
+
+    toJS(data?: any) {
+        data = data === undefined ? {} : data;
+        data["name"] = this.name !== undefined ? this.name : null;
+        data["description"] = this.description !== undefined ? this.description : null;
+        data["isDeleted"] = this.isDeleted !== undefined ? this.isDeleted : null;
+        data["deleterUserId"] = this.deleterUserId !== undefined ? this.deleterUserId : null;
+        data["deletionTime"] = this.deletionTime ? this.deletionTime.toISOString() : null;
+        data["lastModificationTime"] = this.lastModificationTime ? this.lastModificationTime.toISOString() : null;
+        data["lastModifierUserId"] = this.lastModifierUserId !== undefined ? this.lastModifierUserId : null;
+        data["creationTime"] = this.creationTime ? this.creationTime.toISOString() : null;
+        data["creatorUserId"] = this.creatorUserId !== undefined ? this.creatorUserId : null;
+        data["id"] = this.id !== undefined ? this.id : null;
+        return data; 
+    }
+
+    toJSON() {
+        return JSON.stringify(this.toJS());
+    }
+
+    clone() {
+        const json = this.toJSON();
+        return new BlogDto(JSON.parse(json));
+    }
+}
+
+export class CreateBlogInput { 
+    name: string; 
+    description: string;
+    constructor(data?: any) {
+        if (data !== undefined) {
+            this.name = data["name"] !== undefined ? data["name"] : null;
+            this.description = data["description"] !== undefined ? data["description"] : null;
+        }
+    }
+
+    static fromJS(data: any): CreateBlogInput {
+        return new CreateBlogInput(data);
+    }
+
+    toJS(data?: any) {
+        data = data === undefined ? {} : data;
+        data["name"] = this.name !== undefined ? this.name : null;
+        data["description"] = this.description !== undefined ? this.description : null;
+        return data; 
+    }
+
+    toJSON() {
+        return JSON.stringify(this.toJS());
+    }
+
+    clone() {
+        const json = this.toJSON();
+        return new CreateBlogInput(JSON.parse(json));
+    }
+}
+
+export class UpdateBlogInput { 
+    id: number; 
+    name: string; 
+    description: string;
+    constructor(data?: any) {
+        if (data !== undefined) {
+            this.id = data["id"] !== undefined ? data["id"] : null;
+            this.name = data["name"] !== undefined ? data["name"] : null;
+            this.description = data["description"] !== undefined ? data["description"] : null;
+        }
+    }
+
+    static fromJS(data: any): UpdateBlogInput {
+        return new UpdateBlogInput(data);
+    }
+
+    toJS(data?: any) {
+        data = data === undefined ? {} : data;
+        data["id"] = this.id !== undefined ? this.id : null;
+        data["name"] = this.name !== undefined ? this.name : null;
+        data["description"] = this.description !== undefined ? this.description : null;
+        return data; 
+    }
+
+    toJSON() {
+        return JSON.stringify(this.toJS());
+    }
+
+    clone() {
+        const json = this.toJSON();
+        return new UpdateBlogInput(JSON.parse(json));
     }
 }
 
