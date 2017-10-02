@@ -16,6 +16,9 @@ using Abp.Extensions;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using MicroServices.Authentication.JwtBearer;
+using Abp.Reflection.Extensions;
+using System.IO;
+using Abp.PlugIns;
 
 #if FEATURE_SIGNALR
 using Owin;
@@ -88,6 +91,10 @@ namespace MicroServices.Web.Host.Startup
                 options.IocManager.IocContainer.AddFacility<LoggingFacility>(
                     f => f.UseAbpLog4Net().WithConfig("log4net.config")
                 );
+
+                // TODO Plugins: Create a custom implementation with IPlugInSource to allow load by conventions. See issue #1
+                var pluginsFolder = Path.Combine(Path.GetDirectoryName(typeof(MicroServicesWebHostModule).GetAssembly().Location), "MicroServices");
+                options.PlugInSources.AddFolder(pluginsFolder);
             });
         }
 
