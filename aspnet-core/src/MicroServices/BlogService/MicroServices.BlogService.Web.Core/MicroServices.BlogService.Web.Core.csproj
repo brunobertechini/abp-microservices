@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <RootNamespace>MicroServices.BlogService</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Abp.AspNetCore" Version="3.0.0" />
+    <PackageReference Include="Abp.ZeroCore" Version="3.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MicroServices.BlogService.Application\MicroServices.BlogService.Application.csproj" />
+    <ProjectReference Include="..\MicroServices.BlogService.EntityFrameworkCore\MicroServices.BlogService.EntityFrameworkCore.csproj" />
+  </ItemGroup>
+
+</Project>

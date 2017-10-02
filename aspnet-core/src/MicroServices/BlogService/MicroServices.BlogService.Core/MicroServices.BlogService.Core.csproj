@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <RootNamespace>MicroServices.BlogService</RootNamespace>
+    <UserSecretsId>BlogService-56C2EF2F-ABD6-4EFC-AAF2-2E81C34E8FB1</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Localization\SourceFiles\BlogService.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Localization\SourceFiles\BlogService.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Abp.AutoMapper" Version="3.0.0" />
+    <PackageReference Include="Abp.MailKit" Version="3.0.0" />
+    <PackageReference Include="Abp.ZeroCore.EntityFrameworkCore" Version="3.0.0" />
+    <PackageReference Include="Castle.Windsor.MsDependencyInjection" Version="3.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="2.0.0" />
+  </ItemGroup>
+
+</Project>

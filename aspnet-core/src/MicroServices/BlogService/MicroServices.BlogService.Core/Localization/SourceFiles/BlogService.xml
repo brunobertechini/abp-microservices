@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<localizationDictionary culture="en">
+  <texts>
+    <text name="BlogService">Blog Service</text>
+
+    <text name="BlogService.Blogs">Blogs</text>
+
+    <!-- Features -->
+    <text name="BlogService.Features.BlogManagement">Blog Management</text>
+    
+    <!-- Permissions -->
+    <text name="BlogService.Blogs.Permission.Create">Creating Blog</text>
+    <text name="BlogService.Blogs.Permission.Update">Updating Blog</text>
+    <text name="BlogService.Blogs.Permission.Delete">Deleting Blog</text>
+    
+  </texts>
+</localizationDictionary>

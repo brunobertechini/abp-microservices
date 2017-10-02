@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26228.9
+VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{AFAA0841-BD93-466F-B8F4-FB4EEC86F1FC}"
 EndProject
@@ -16,10 +16,25 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroServices.Migrator", "src\MicroServices.Migrator\MicroServices.Migrator.csproj", "{880B3591-E057-46FE-B525-10BD83828B93}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroServices.Web.Host", "src\MicroServices.Web.Host\MicroServices.Web.Host.csproj", "{38E184BD-E874-4633-A947-AED4FDB73F40}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B7D7BCFC-1CA7-444B-A945-D0A7C91B54CA} = {B7D7BCFC-1CA7-444B-A945-D0A7C91B54CA}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroServices.Web.Core", "src\MicroServices.Web.Core\MicroServices.Web.Core.csproj", "{22CFE0D2-8DCA-42D7-AD7D-784C3862493F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroServices.EntityFrameworkCore", "src\MicroServices.EntityFrameworkCore\MicroServices.EntityFrameworkCore.csproj", "{E0580562-F8F2-4EBB-B07A-ABFC6F2C314F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroServices.EntityFrameworkCore", "src\MicroServices.EntityFrameworkCore\MicroServices.EntityFrameworkCore.csproj", "{E0580562-F8F2-4EBB-B07A-ABFC6F2C314F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MicroServices", "MicroServices", "{0C8F78E6-C0BE-411C-BC23-28E17DA4FF6F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BlogService", "BlogService", "{AA2B3E66-BE47-414E-BFDC-8E528D35E894}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroServices.BlogService.Core", "src\MicroServices\BlogService\MicroServices.BlogService.Core\MicroServices.BlogService.Core.csproj", "{1515AA5A-6709-495E-B024-4D09EFA95893}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroServices.BlogService.Application", "src\MicroServices\BlogService\MicroServices.BlogService.Application\MicroServices.BlogService.Application.csproj", "{4A33959B-9641-4BE7-A2E9-78C5698B88D8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroServices.BlogService.EntityFrameworkCore", "src\MicroServices\BlogService\MicroServices.BlogService.EntityFrameworkCore\MicroServices.BlogService.EntityFrameworkCore.csproj", "{A2ABBF41-986F-4A9A-978B-1DE3CE4E1EC2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroServices.BlogService.Web.Core", "src\MicroServices\BlogService\MicroServices.BlogService.Web.Core\MicroServices.BlogService.Web.Core.csproj", "{B7D7BCFC-1CA7-444B-A945-D0A7C91B54CA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +70,22 @@ Global
 		{E0580562-F8F2-4EBB-B07A-ABFC6F2C314F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E0580562-F8F2-4EBB-B07A-ABFC6F2C314F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E0580562-F8F2-4EBB-B07A-ABFC6F2C314F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1515AA5A-6709-495E-B024-4D09EFA95893}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1515AA5A-6709-495E-B024-4D09EFA95893}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1515AA5A-6709-495E-B024-4D09EFA95893}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1515AA5A-6709-495E-B024-4D09EFA95893}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A33959B-9641-4BE7-A2E9-78C5698B88D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A33959B-9641-4BE7-A2E9-78C5698B88D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A33959B-9641-4BE7-A2E9-78C5698B88D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A33959B-9641-4BE7-A2E9-78C5698B88D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2ABBF41-986F-4A9A-978B-1DE3CE4E1EC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2ABBF41-986F-4A9A-978B-1DE3CE4E1EC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2ABBF41-986F-4A9A-978B-1DE3CE4E1EC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2ABBF41-986F-4A9A-978B-1DE3CE4E1EC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7D7BCFC-1CA7-444B-A945-D0A7C91B54CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7D7BCFC-1CA7-444B-A945-D0A7C91B54CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7D7BCFC-1CA7-444B-A945-D0A7C91B54CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7D7BCFC-1CA7-444B-A945-D0A7C91B54CA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,5 +98,14 @@ Global
 		{38E184BD-E874-4633-A947-AED4FDB73F40} = {AFAA0841-BD93-466F-B8F4-FB4EEC86F1FC}
 		{22CFE0D2-8DCA-42D7-AD7D-784C3862493F} = {AFAA0841-BD93-466F-B8F4-FB4EEC86F1FC}
 		{E0580562-F8F2-4EBB-B07A-ABFC6F2C314F} = {AFAA0841-BD93-466F-B8F4-FB4EEC86F1FC}
+		{0C8F78E6-C0BE-411C-BC23-28E17DA4FF6F} = {AFAA0841-BD93-466F-B8F4-FB4EEC86F1FC}
+		{AA2B3E66-BE47-414E-BFDC-8E528D35E894} = {0C8F78E6-C0BE-411C-BC23-28E17DA4FF6F}
+		{1515AA5A-6709-495E-B024-4D09EFA95893} = {AA2B3E66-BE47-414E-BFDC-8E528D35E894}
+		{4A33959B-9641-4BE7-A2E9-78C5698B88D8} = {AA2B3E66-BE47-414E-BFDC-8E528D35E894}
+		{A2ABBF41-986F-4A9A-978B-1DE3CE4E1EC2} = {AA2B3E66-BE47-414E-BFDC-8E528D35E894}
+		{B7D7BCFC-1CA7-444B-A945-D0A7C91B54CA} = {AA2B3E66-BE47-414E-BFDC-8E528D35E894}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0CBB2D66-D359-4F25-BED3-E3FAC8F4F511}
 	EndGlobalSection
 EndGlobal
